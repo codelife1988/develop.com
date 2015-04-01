@@ -1,19 +1,20 @@
 module.exports = function(grunt) {
 
 	// Project configuration.
-	grunt.initConfig({
+	grunt
+			.initConfig({
 				pkg : grunt.file.readJSON('package.json'),
-				
-			    banner: '/*!\n' +
-	            ' * =====================================================\n' +
-	            ' * Ratchet v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-	            ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-	            ' * Licensed under <%= pkg.license %> (https://github.com/twbs/ratchet/blob/master/LICENSE)\n' +
-	            ' *\n' +
-	            ' * v<%= pkg.version %> designed by @connors.\n' +
-	            ' * =====================================================\n' +
-	            ' */\n',
-				
+
+				banner : '/*!\n'
+						+ ' * =====================================================\n'
+						+ ' * Ratchet v<%= pkg.version %> (<%= pkg.homepage %>)\n'
+						+ ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n'
+						+ ' * Licensed under <%= pkg.license %> (https://github.com/twbs/ratchet/blob/master/LICENSE)\n'
+						+ ' *\n'
+						+ ' * v<%= pkg.version %> designed by @connors.\n'
+						+ ' * =====================================================\n'
+						+ ' */\n',
+
 				concat : {
 					ratchet_js : {
 						options : {
@@ -55,7 +56,9 @@ module.exports = function(grunt) {
 				},
 				clean : {
 					dist : [ 'plugins/ratchet-2.0.2/dist/js',
-							'plugins/ratchet-2.0.2/dist/css' ]
+							'plugins/ratchet-2.0.2/dist/css',
+							'apps/mobile/web/assets/compile/js',
+							'apps/mobile/web/assets/compile/js/' ]
 				},
 
 				sass : {
@@ -79,7 +82,27 @@ module.exports = function(grunt) {
 							ext : '.min.css'
 						} ]
 					}
-				}
+				},
+
+				copy : {
+					main_css : {
+						expand : true,
+						cwd : 'plugins/ratchet-2.0.2/dist/css/',
+						src : '**',
+						dest : 'apps/mobile/web/assets/compile/css/',
+						flatten : true,
+						filter : 'isFile',
+					},
+
+					main_js : {
+						expand : true,
+						cwd : 'plugins/ratchet-2.0.2/dist/js/',
+						src : '**',
+						dest : 'apps/mobile/web/assets/compile/js/',
+						flatten : true,
+						filter : 'isFile',
+					},
+				},
 
 			});
 
@@ -89,7 +112,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	// 默认被执行的任务列表。
-	grunt.registerTask('default', [ 'clean', 'sass', 'concat', 'uglify','cssmin', 'uglify' ]);
+	grunt.registerTask('default', [ 'clean', 'sass', 'concat', 'uglify',
+			'cssmin', 'uglify', 'copy' ]);
 };
