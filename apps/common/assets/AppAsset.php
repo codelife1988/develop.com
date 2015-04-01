@@ -1,7 +1,6 @@
 <?php
 namespace common\assets;
 
-
 use yii\web\AssetBundle;
 
 /**
@@ -13,7 +12,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'assets/site.css',
     ];
     public $js = [
     ];

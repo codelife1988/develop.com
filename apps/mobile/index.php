@@ -4,10 +4,13 @@
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 defined('YII_ENV') or define('YII_ENV', 'dev');
 
-require(__DIR__ . '/../../vendor/autoload.php');
-require(__DIR__ . '/../../vendor/yiisoft/yii2/Yii.php');
+define('PATH', dirname(dirname(__DIR__)));
 
-$config = require(__DIR__ . '/config/web.php');
+require (PATH . '/vendor/autoload.php');
+require (PATH . '/vendor/yiisoft/yii2/Yii.php');
 
-Yii::setAlias('common', dirname(__DIR__).'/common');
+require (dirname(__DIR__) . '/common/boostarp.php');
+
+$config = yii\helpers\ArrayHelper::merge(require (__DIR__ . '/config/web.php'), require (dirname(__DIR__) . '/common/config/global.php'));
+
 (new yii\web\Application($config))->run();
