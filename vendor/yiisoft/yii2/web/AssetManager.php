@@ -402,8 +402,8 @@ class AssetManager extends Component
         if (isset($this->_published[$path])) {
             return $this->_published[$path];
         }
-
-        if (!is_string($path) || ($src = realpath($path)) === false) {
+        
+	if (!is_string($path) || ($src = realpath($path)) === false) {
             throw new InvalidParamException("The file or directory to be published does not exist: $path");
         }
 
