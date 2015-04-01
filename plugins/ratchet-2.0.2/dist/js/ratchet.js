@@ -1,3 +1,12 @@
+/*!
+ * =====================================================
+ * Ratchet v1.0.0 (https://github.com/codelife1988/develop.com)
+ * Copyright 2015 memcache@qq.com
+ * Licensed under ISC (https://github.com/twbs/ratchet/blob/master/LICENSE)
+ *
+ * v1.0.0 designed by @connors.
+ * =====================================================
+ */
 /* ========================================================================
  * Ratchet: modals.js v2.0.2
  * http://goratchet.com/components#modals
